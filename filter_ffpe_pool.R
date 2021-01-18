@@ -1,4 +1,4 @@
-#!/opt/common/CentOS_6-dev/R/R-3.1.3/lib64/R/bin/Rscript
+#!/home/socci/Code/Pipelines/CBE/Variant/PostProcessV3/opt/3.1.3/bin/Rscript
 
 ##########################################################################################
 # MSKCC CMO

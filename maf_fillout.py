@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/opt/common/CentOS_7/python/python-2.7.14/bin/python2
 
 ##########################################################################################
 # MSKCC CMO
@@ -53,7 +53,7 @@ print 'MAF genome seems to be '+mafGenome.strip().lower()
 if mafGenome.strip().lower() is not genome:
 	print 'Genome build different from that in MAF file, might fail'
 
-### Check if genome in BAM header 
+### Check if genome in BAM header
 for bam in bams:
 	try:
 		out = subprocess.check_output('samtools view -H '+bam+' | grep '+genome, shell = True)
@@ -63,7 +63,14 @@ for bam in bams:
 ### Make a temporary simplified MAF
 uniqRscript = os.path.dirname(os.path.realpath(__file__))+'/maf_uniq_tags.R'
 uniqRCall = uniqRscript+' '+maf+' > ___tmp.maf'
-subprocess.call(uniqRCall, shell = True)
+print uniqRscript
+print uniqRCall
+import os
+my_env = os.environ.copy()
+my_env["R_LIBS"]=""
+print my_env["R_LIBS"]
+
+subprocess.call(uniqRCall, shell = True, env=my_env)
 
 ### Call GetBaseCountsMultiSample
 gbcmCall = gbcmPath+' --thread %s --filter_improper_pair 0 --fasta %s --maf ___tmp.maf --output %s %s' % (n, genomePath, output, bamString)
