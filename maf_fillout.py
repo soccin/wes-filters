@@ -39,6 +39,8 @@ if genome == 'b37':
 	genomePath = '/juno/depot/assemblies/H.sapiens/b37/b37.fasta'
 if genome == 'b37_dmp':
 	genomePath = '/juno/depot/assemblies/H.sapiens/b37_dmp/b37.fasta'
+if genome == 'mm10':
+	genomePath = '/juno/depot/assemblies/M.musculus/mm10/mm10.fasta'
 
 ### Parse BAM files into string
 bamString = []
